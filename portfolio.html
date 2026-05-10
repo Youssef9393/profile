@@ -1,0 +1,860 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Youssef Eljaouhary — AI Research & Engineering</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #faf9f6;
+    --bg-alt: #ffffff;
+    --ink: #1a1a1a;
+    --ink-soft: #4a4a4a;
+    --ink-mute: #8a8a8a;
+    --line: #e8e6e0;
+    --accent: #2563eb;
+    --accent-soft: #eff6ff;
+    --highlight: #dc2626;
+    --serif: 'Fraunces', Georgia, serif;
+    --sans: 'Inter', -apple-system, sans-serif;
+    --mono: 'JetBrains Mono', monospace;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html, body {
+    width: 100%;
+    overflow-x: hidden;
+  }
+
+  body {
+    font-family: var(--sans);
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    display: flex;
+    justify-content: center;
+  }
+
+  .container {
+    max-width: 1100px;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 60px 40px;
+  }
+
+  /* HEADER / HERO */
+  .hero {
+    display: grid;
+    grid-template-columns: 1fr 280px;
+    gap: 60px;
+    align-items: start;
+    padding-bottom: 60px;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .hero-text h1 {
+    font-family: var(--serif);
+    font-size: 56px;
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    margin-bottom: 28px;
+    line-height: 1.05;
+  }
+
+  .hero-text p {
+    font-size: 16px;
+    color: var(--ink-soft);
+    margin-bottom: 18px;
+    line-height: 1.7;
+  }
+
+  .hero-text p strong {
+    color: var(--ink);
+    font-weight: 600;
+  }
+
+  .hero-text a {
+    color: var(--accent);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s;
+  }
+
+  .hero-text a:hover {
+    border-bottom-color: var(--accent);
+  }
+
+  .hero-photo {
+    width: 260px;
+    height: 260px;
+    border-radius: 50%;
+    overflow: hidden;
+    background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 50%, #3b82f6 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    box-shadow: 0 20px 60px rgba(37, 99, 235, 0.15);
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .hero-photo::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(circle at 30% 40%, rgba(255,255,255,0.2), transparent 50%),
+      /* radial-gradient(circle at 70% 60%, rgba(220,38,38,0.3), transparent 50%); */
+  }
+
+  .photo-initials {
+    font-family: var(--serif);
+    font-size: 80px;
+    font-weight: 500;
+    color: white;
+    z-index: 1;
+    letter-spacing: -0.04em;
+  }
+
+  .social-links {
+    margin-top: 28px;
+    display: flex;
+    gap: 14px;
+    align-items: center;
+    font-size: 15px;
+    flex-wrap: wrap;
+  }
+
+  .social-links a {
+    color: var(--accent);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 12px;
+    border: 1px solid var(--line);
+    border-radius: 100px;
+    background: var(--bg-alt);
+    transition: all 0.2s ease;
+  }
+
+  .social-links a:hover {
+    border-color: var(--accent);
+    background: var(--accent-soft);
+    transform: translateY(-1px);
+  }
+
+  .social-links a svg {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+  }
+
+  .social-links span {
+    display: none;
+  }
+
+  /* SECTION HEADINGS */
+  .section {
+    padding: 60px 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .section:last-child {
+    border-bottom: none;
+  }
+
+  .section-title {
+    font-family: var(--serif);
+    font-size: 36px;
+    font-weight: 500;
+    margin-bottom: 40px;
+    letter-spacing: -0.01em;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .section-title .accent-mark {
+    color: var(--highlight);
+    font-size: 32px;
+  }
+
+  /* HIGHLIGHTS / RESEARCH */
+  .highlight-item {
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    gap: 40px;
+    margin-bottom: 50px;
+    align-items: start;
+  }
+
+  .highlight-item:last-child {
+    margin-bottom: 0;
+  }
+
+  .highlight-image {
+    width: 100%;
+    height: 140px;
+    border-radius: 8px;
+    background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+    border: 1px solid var(--line);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .highlight-image.dataset {
+    background:
+      linear-gradient(135deg, #fef3c7 0%, #fed7aa 100%);
+  }
+
+  .highlight-image.medical {
+    background:
+      linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+  }
+
+  .highlight-image.face {
+    background:
+      linear-gradient(135deg, #fce7f3 0%, #fbcfe8 100%);
+  }
+
+  .highlight-image.legal {
+    background:
+      linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+  }
+
+  .highlight-image-icon {
+    font-family: var(--serif);
+    font-size: 48px;
+    color: rgba(0,0,0,0.3);
+    font-weight: 500;
+  }
+
+  .highlight-content h3 {
+    font-family: var(--serif);
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--accent);
+    line-height: 1.3;
+    margin-bottom: 8px;
+    cursor: pointer;
+    transition: color 0.2s;
+  }
+
+  .highlight-content h3:hover {
+    color: #1e40af;
+  }
+
+  .authors {
+    font-size: 14px;
+    color: var(--accent);
+    margin-bottom: 4px;
+  }
+
+  .authors strong {
+    color: var(--ink);
+    font-weight: 600;
+  }
+
+  .venue {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 14px;
+    color: var(--ink-soft);
+    margin-bottom: 14px;
+  }
+
+  .highlight-desc {
+    font-size: 15px;
+    color: var(--ink-soft);
+    line-height: 1.65;
+  }
+
+  /* EXPERIENCE */
+  .experience-item {
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    gap: 40px;
+    margin-bottom: 36px;
+    padding-bottom: 36px;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .experience-item:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+  }
+
+  .exp-meta {
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--ink-mute);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .exp-content h3 {
+    font-family: var(--serif);
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+
+  .exp-company {
+    color: var(--accent);
+    font-size: 15px;
+    margin-bottom: 12px;
+    font-weight: 500;
+  }
+
+  .exp-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 14px;
+  }
+
+  .tag {
+    font-family: var(--mono);
+    font-size: 11px;
+    padding: 3px 10px;
+    background: var(--accent-soft);
+    color: var(--accent);
+    border-radius: 100px;
+    font-weight: 500;
+  }
+
+  .exp-content ul {
+    list-style: none;
+    padding-left: 0;
+  }
+
+  .exp-content li {
+    font-size: 15px;
+    color: var(--ink-soft);
+    margin-bottom: 8px;
+    padding-left: 18px;
+    position: relative;
+    line-height: 1.6;
+  }
+
+  .exp-content li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--ink-mute);
+  }
+
+  /* EDUCATION */
+  .edu-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+  }
+
+  .edu-card {
+    padding: 28px;
+    background: var(--bg-alt);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  .edu-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+  }
+
+  .edu-card h3 {
+    font-family: var(--serif);
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    line-height: 1.3;
+  }
+
+  .edu-card .uni {
+    font-size: 14px;
+    color: var(--accent);
+    margin-bottom: 4px;
+  }
+
+  .edu-card .date {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--ink-mute);
+    margin-bottom: 12px;
+  }
+
+  .edu-card .coursework {
+    font-size: 13px;
+    color: var(--ink-soft);
+    line-height: 1.5;
+  }
+
+  /* SKILLS */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+  }
+
+  .skill-category h4 {
+    font-family: var(--mono);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--ink-mute);
+    margin-bottom: 16px;
+  }
+
+  .skill-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .skill-chip {
+    padding: 6px 14px;
+    background: var(--bg-alt);
+    border: 1px solid var(--line);
+    border-radius: 100px;
+    font-size: 13px;
+    color: var(--ink);
+    transition: all 0.2s;
+  }
+
+  .skill-chip:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  /* LANGUAGES */
+  .lang-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  .lang-item {
+    text-align: center;
+    padding: 20px;
+    background: var(--bg-alt);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+  }
+
+  .lang-item .flag {
+    font-size: 32px;
+    margin-bottom: 8px;
+  }
+
+  .lang-item .name {
+    font-family: var(--serif);
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+
+  .lang-item .level {
+    font-size: 13px;
+    color: var(--ink-mute);
+  }
+
+  /* FOOTER */
+  .footer {
+    padding: 50px 0;
+    text-align: center;
+    color: var(--ink-mute);
+    font-size: 14px;
+  }
+
+  .footer .quote {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 18px;
+    color: var(--ink-soft);
+    margin-bottom: 20px;
+  }
+
+  .hero-photo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .profile-img {
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #fff;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    .container { padding: 40px 24px; }
+    .hero {
+      grid-template-columns: 1fr;
+      gap: 30px;
+      justify-items: center;
+      text-align: center;
+    }
+    .hero-text {
+      text-align: center;
+    }
+    .social-links {
+      justify-content: center;
+    }
+    .hero-photo {
+      width: 180px;
+      height: 180px;
+      margin: 0 auto;
+    }
+    .photo-initials { font-size: 56px; }
+    .hero-text h1 { font-size: 38px; }
+    .highlight-item, .experience-item {
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+    .highlight-image { height: 160px; }
+    .edu-grid, .skills-grid, .lang-grid {
+      grid-template-columns: 1fr;
+    }
+    .section-title { font-size: 28px; justify-content: center; }
+  }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero-text, .hero-photo {
+    animation: fadeUp 0.8s ease-out;
+  }
+
+  .hero-photo { animation-delay: 0.1s; animation-fill-mode: both; }
+
+  .section {
+    animation: fadeUp 0.6s ease-out;
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="hero-text">
+      <h1>Youssef Eljaouhary</h1>
+      <p>
+        Hi! I'm Youssef, an <strong>R&D Engineer at Brain Gen Technology</strong> and a dual-degree Master's student in
+        <a href="#education">Data Exploration & Decision Making</a> at Sorbonne Paris Nord and Web Intelligence & Data Science at USMBA, specializing in
+        <strong>AI for Medicine</strong>.
+      </p>
+      <p>
+        My current research focuses on advancing <strong>multilingual medical foundation models</strong>, fine-tuning large language models for domain-specific question answering, and building robust pipelines that combine NLP, computer vision, and speech recognition for healthcare applications.
+      </p>
+      <p>
+        I am open to pursuing a PhD in Generative AI, Explainable AI (XAI), and Multi-Agent Systems. If you are working on healthcare AI, multilingual NLP, or would like to discuss large language models (LLMs), I would be happy to connect with you.
+      </p>
+
+      <div class="social-links">
+        <a href="mailto:youssef.eljaouhary@usmba.ac.ma" title="Email">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="4" width="20" height="16" rx="2"/>
+            <path d="m22 7-10 5L2 7"/>
+          </svg>
+          Email
+        </a>
+        <a href="https://huggingface.co/ELJAOUHARY" target="_blank" title="Hugging Face">
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 2C6.48 2 2 6.48 2 12c0 2.5.92 4.78 2.43 6.54.4-.94.86-1.91 1.36-2.86C5.31 14.62 5 13.34 5 12c0-3.87 3.13-7 7-7s7 3.13 7 7c0 1.34-.31 2.62-.79 3.68.5.95.96 1.92 1.36 2.86C21.08 16.78 22 14.5 22 12c0-5.52-4.48-10-10-10zm-3 9c.55 0 1-.45 1-1s-.45-1-1-1-1 .45-1 1 .45 1 1 1zm6 0c.55 0 1-.45 1-1s-.45-1-1-1-1 .45-1 1 .45 1 1 1zm-3 7c-1.5 0-2.84-.66-3.76-1.7-.34.4-.66.81-.97 1.22C8.42 18.83 10.13 19.5 12 19.5s3.58-.67 4.73-1.98c-.31-.41-.63-.82-.97-1.22C14.84 17.34 13.5 18 12 18z"/>
+          </svg>
+          Hugging Face
+        </a>
+        <a href="https://github.com/Youssef9393" target="_blank" title="GitHub">
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/>
+          </svg>
+          GitHub
+        </a>
+        <a href="tel:+212615671580" title="Phone">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+          </svg>
+          +212 6 15 67 15 80
+        </a>
+      </div>
+    </div>
+
+    <div class="hero-photo">
+      <img src="./youssef_w.png" alt="Profile Photo" class="profile-img">
+    </div>
+  </header>
+
+  <!-- LATEST HIGHLIGHTS -->
+  <section class="section">
+    <h2 class="section-title">Latest Highlights <span class="accent-mark">!</span></h2>
+
+    <div class="highlight-item">
+      <div class="highlight-image dataset">
+        <span class="highlight-image-icon">MQA</span>
+      </div>
+      <div class="highlight-content">
+        <h3>Multilingual Datasets for Evaluating Large Language Models in Medical Question Answering</h3>
+        <p class="authors"><strong>Youssef Eljaouhary</strong>, Brain Gen Technology Team</p>
+        <p class="venue">Onboarding Paper, 2025</p>
+        <p class="highlight-desc">
+          Contributed to the construction of multilingual MedQA datasets covering Darija, French, and English, alongside doctor–patient conversation datasets for ASR. The work establishes evaluation benchmarks for medical LLMs across underrepresented languages and clinical specialities.
+        </p>
+      </div>
+    </div>
+
+    <div class="highlight-item">
+      <div class="highlight-image medical">
+        <span class="highlight-image-icon">Qwen</span>
+      </div>
+      <div class="highlight-content">
+        <h3>Fine-Tuning Llama8-instruct (7B) for Medical Question Answering</h3>
+        <p class="authors"><strong>Youssef Eljaouhary</strong> · R&D Engineer, Brain Gen Technology</p>
+        <p class="venue">Industry Project, 2025</p>
+        <p class="highlight-desc">
+          Annotated multilingual patient–doctor interactions and performed Named Entity Recognition for symptoms, diseases, and neurological conditions. Fine-tuned Qwen2.5-7B with PEFT for domain-specific QA and deployed production-ready APIs integrated with ASR systems.
+        </p>
+      </div>
+    </div>
+
+    <div class="highlight-item">
+      <div class="highlight-image face">
+        <span class="highlight-image-icon">ReF</span>
+      </div>
+      <div class="highlight-content">
+        <h3>Adversarial Attacks in Face Recognition Systems</h3>
+        <p class="authors"><strong>Youssef Eljaouhary</strong>, supervised by Prof. Jamal Riffi</p>
+        <p class="venue">Research Internship, 2024</p>
+        <p class="highlight-desc">
+          Developed a real-time deep-learning face recognition system with adversarial attack simulation using the ReFace method. The system employs MTCNN for face detection and InceptionResNetV1 for facial embeddings, evaluating model robustness against impersonation attacks via L2-distance detection.
+        </p>
+      </div>
+    </div>
+
+    <div class="highlight-item">
+      <div class="highlight-image legal">
+        <span class="highlight-image-icon">LAI</span>
+      </div>
+      <div class="highlight-content">
+        <h3>Moroccan Legal AI — Arabic Legal Question Answering</h3>
+        <p class="authors"><strong>Youssef Eljaouhary</strong></p>
+        <p class="venue">Personal Project, 2024</p>
+        <p class="highlight-desc">
+          Built an end-to-end Moroccan Legal AI system: extracted Arabic legal data from PDF reports using Mistral OCR, performed EDA and data cleaning, fine-tuned TinyLlama for Moroccan legal QA with LoRA, and deployed a web-based interface.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section class="section">
+    <h2 class="section-title">Experience</h2>
+
+    <div class="experience-item">
+      <div class="exp-meta">Present</div>
+      <div class="exp-content">
+        <h3>R&D Engineer</h3>
+        <div class="exp-company">Brain Gen Technology</div>
+        <div class="exp-tags">
+          <span class="tag">Fine-Tuning</span>
+          <span class="tag">PEFT</span>
+          <span class="tag">MLOps</span>
+          <span class="tag">Dataset Collection</span>
+          <span class="tag">Python</span>
+        </div>
+        <ul>
+          <li>Annotated multilingual data (patient–doctor interactions) from trusted and verified platforms</li>
+          <li>Performed Named Entity Recognition (NER) for symptoms, diseases, and neurological conditions</li>
+          <li>Fine-tuned Qwen2.5 (7B) for domain-specific Question Answering tasks</li>
+          <li>Developed and deployed APIs to make AI models production-ready and accessible</li>
+          <li>Integrated Automatic Speech Recognition (ASR) systems into the medical AI pipeline</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="experience-item">
+      <div class="exp-meta">4 months</div>
+      <div class="exp-content">
+        <h3>ML Engineer</h3>
+        <div class="exp-company">Assurance Sector</div>
+        <div class="exp-tags">
+          <span class="tag">Llama 3.2 Vision</span>
+          <span class="tag">LoRA</span>
+          <span class="tag">Unsloth</span>
+          <span class="tag">Computer Vision</span>
+          <span class="tag">Hugging Face</span>
+          <span class="tag">PyTorch</span>
+        </div>
+        <ul>
+          <li>Shadowed the team to gain insights into car damage detection and assessment workflows</li>
+          <li>Developed and fine-tuned a multimodal Llama Vision model for intelligent car damage analysis, combining computer vision, LoRA fine-tuning, and multilingual AI reporting</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- EDUCATION -->
+  <section class="section" id="education">
+    <h2 class="section-title">Education</h2>
+
+    <div class="edu-grid">
+      <div class="edu-card">
+        <h3>Master's in Data Exploration & Decision Making</h3>
+        <div class="uni">Sorbonne Paris Nord University · Galilée Institute</div>
+        <div class="date">2025 — 2026 · Paris, France · Dual Degree</div>
+        <div class="coursework">
+          Machine Learning · Deep Learning · Data Mining · Data Warehouse · Business Intelligence
+        </div>
+      </div>
+
+      <div class="edu-card">
+        <h3>Master's in Web Intelligence & Data Science</h3>
+        <div class="uni">Sidi Mohamed Ben Abdellah University</div>
+        <div class="date">2024 — 2026 · Fez, Morocco</div>
+        <div class="coursework">
+          Optimization · Probabilities · Statistics · LLM & NLP · Computer Vision · Operations Research ·  Web Development
+        </div>
+      </div>
+
+      <div class="edu-card">
+        <h3>Bachelor's degree in Mathematics and Computer Science</h3>
+        <div class="uni">Ibn Zohr University</div>
+        <div class="date">2020 — 2024 · Agadir, Morocco</div>
+        <div class="coursework">
+          Analyse Numérique · algebra · Probabilities · Statistics · Genie logiciel · Data Structures · Algorithms · Databases · Computer Networks
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section class="section">
+    <h2 class="section-title">Key Projects</h2>
+
+    <div class="experience-item">
+      <div class="exp-meta">RAG · Multimodal</div>
+      <div class="exp-content">
+        <h3>RAG Chatbot Q/A</h3>
+        <div class="exp-tags">
+          <span class="tag">OCR</span>
+          <span class="tag">LangChain</span>
+          <span class="tag">Ollama</span>
+          <span class="tag">ChromaDB</span>
+          <span class="tag">Streamlit</span>
+        </div>
+        <ul>
+          <li>Extracted multilingual embeddings for text, image, and canvas modalities</li>
+          <li>Stored and indexed embeddings in a semantic vector database (ChromaDB)</li>
+          <li>Used LLMs to reformulate, contextualize, and enrich retrieved responses</li>
+          <li>Built a multimodal RAG pipeline enabling cross-modal understanding and intelligent answer generation</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="experience-item">
+      <div class="exp-meta">Healthcare · XAI</div>
+      <div class="exp-content">
+        <h3>Explainable AI for Pneumonia Diagnosis</h3>
+        <div class="exp-tags">
+          <span class="tag">PyTorch</span>
+          <span class="tag">CNN</span>
+          <span class="tag">LIME</span>
+          <span class="tag">SHAP</span>
+          <span class="tag">Matplotlib</span>
+        </div>
+        <ul>
+          <li>Developed a deep learning model for pneumonia diagnosis on chest X-rays</li>
+          <li>Integrated preprocessing (CLAHE, augmentation) and explainability methods (LIME, SHAP)</li>
+          <li>Made predictions interpretable to support clinical decision-making</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section class="section">
+    <h2 class="section-title">Skills</h2>
+
+    <div class="skills-grid">
+      <div class="skill-category">
+        <h4>Technical</h4>
+        <div class="skill-list">
+          <span class="skill-chip">Python</span>
+          <span class="skill-chip">PyTorch</span>
+          <span class="skill-chip">Transformers</span>
+          <span class="skill-chip">Hugging Face</span>
+          <span class="skill-chip">LangChain</span>
+          <span class="skill-chip">LoRA / PEFT</span>
+          <span class="skill-chip">NLP</span>
+          <span class="skill-chip">Computer Vision</span>
+          <span class="skill-chip">Machine Learning</span>
+          <span class="skill-chip">SQL</span>
+          <span class="skill-chip">GCP</span>
+          <span class="skill-chip">API Development</span>
+          <span class="skill-chip">MLOps</span>
+        </div>
+      </div>
+
+      <div class="skill-category">
+        <h4>Soft Skills</h4>
+        <div class="skill-list">
+          <span class="skill-chip">Project Management</span>
+          <span class="skill-chip">Teamwork</span>
+          <span class="skill-chip">Problem Solving</span>
+          <span class="skill-chip">Strategic Planning</span>
+          <span class="skill-chip">Communication</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LANGUAGES -->
+  <section class="section">
+    <h2 class="section-title">Languages</h2>
+
+    <div class="lang-grid">
+      <div class="lang-item">
+        <div class="name">العربية</div>
+        <div class="level">Native</div>
+      </div>
+      <div class="lang-item">
+        <div class="name">Français</div>
+        <div class="level">Native</div>
+      </div>
+      <div class="lang-item">
+        <div class="name">English</div>
+        <div class="level">B2 — Professional</div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <p>© 2025 Youssef Eljaouhary </p>
+  </footer>
+
+</div>
+
+</body>
+</html>
